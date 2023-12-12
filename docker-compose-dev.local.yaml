@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  symfony-tagged-services-db:
+    container_name: symfony-tagged-services-db-dev-local
+    ports:
+      - '33060:3306'
+
+  symfony-tagged-services-php:
+    container_name: symfony-tagged-services-php-dev-local
+    ports:
+      - '2222:22'
+    volumes:
+      - symfony-tagged-services-api-app-sync:/app
+    environment:
+      APP_ENV: dev
+      APP_VERSION: dev
+      DATABASE_URL: mysql://root:@symfony-tagged-services-db:3306/symfony-tagged-services
+
+  symfony-tagged-services-nginx:
+    container_name: symfony-tagged-services-nginx-dev-local
+    ports:
+      - '9090:80'
+    volumes:
+      - symfony-tagged-services-api-app-sync:/app
+
+volumes:
+  symfony-tagged-services-api-app-sync:
+    external: true

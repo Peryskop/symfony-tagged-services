@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  symfony-tagged-services-db:
+    container_name: symfony-tagged-services-db-dev
+    ports:
+      - '33063:3306'
+
+  symfony-tagged-services-php:
+    container_name: symfony-tagged-services-php-dev
+    environment:
+      APP_ENV: dev
+      APP_VERSION: dev
+      DATABASE_URL: mysql://root:@symfony-tagged-services-db:3306/symfony-tagged-services_dev
+
+  symfony-tagged-services-nginx:
+    container_name: symfony-tagged-services-nginx-dev
+    ports:
+      - '8083:80'

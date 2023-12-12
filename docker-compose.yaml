@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  symfony-tagged-services-db:
+    image: mariadb:10.6.10
+    command: --sql_mode=""
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+    volumes:
+      - symfony-tagged-services_db_data:/var/lib/mysql
+
+  symfony-tagged-services-php:
+    build: ../../easy-docker/docker/php-fpm
+    working_dir: /app
+    volumes:
+      - ./docker/php-fpm/php.ini:/usr/local/etc/php/php.ini:ro
+      - .:/app:cached
+    depends_on:
+      - symfony-tagged-services-db
+
+  symfony-tagged-services-nginx:
+    image: nginx:latest
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - .:/app:cached
+    depends_on:
+      - symfony-tagged-services-php
+
+volumes:
+  symfony-tagged-services_db_data:
