@@ -1,5 +1,4 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+some_action:
+    path: /api/some-action
+    controller: "action.some_action"
+    methods: GET

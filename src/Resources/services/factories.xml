@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <defaults autowire="false" autoconfigure="false" public="false"/>
+
+        <service class="App\Factory\ResponseFactoryDE"
+                 id="factory.response_de">
+
+            <tag name="factory.response">
+                <attribute name="region">DE</attribute>
+            </tag>
+        </service>
+
+        <service class="App\Factory\ResponseFactoryEN"
+                 id="factory.response_en">
+
+            <tag name="factory.response">
+                <attribute name="region">EN</attribute>
+            </tag>
+        </service>
+
+        <service class="App\Factory\ResponseFactoryFR"
+                 id="factory.response_fr">
+
+            <tag name="factory.response">
+                <attribute name="region">FR</attribute>
+            </tag>
+        </service>
+
+        <service class="App\Factory\ResponseFactoryPL"
+                 id="factory.response_pl">
+
+            <tag name="factory.response">
+                <attribute name="region">PL</attribute>
+            </tag>
+        </service>
+    </services>
+</container>
